@@ -34,7 +34,7 @@ w_temp=0.0
 digitalWrite(red,1)
 while True:
 	try:
-		if !digitalRead(button):
+		if not digitalRead(button):
 			change=0
 		[temp,humidity] = dht(sensor,0)
 		if math.isnan(temp)==False:
@@ -57,8 +57,9 @@ while True:
 			voltage= round((float)(sensor_value) *5/1023,2)
 			degrees = round((voltage*full_angle)/5,2)
 			w_temp = 10 + int(degrees/full_angle*30)
+			time.sleep(2)
 			setText("Wanted Temperature:"+str(w_temp))
-			time.sleep(1)
+			time.sleep(2)
 			setText("Temperature:"+str(temps))
 			print("Temperature is: %f Wanted Temperature is: %d" %(temps, w_temp))
 			sub_value=w_temp-2
@@ -74,7 +75,8 @@ while True:
 					digitalWrite(red,1)
 					digitalWrite(green,0)
 					digitalWrite(relay,0)
-					print("DEVICE OFF") 
+					print("DEVICE OFF")
+					time.sleep(2)
 	except KeyboardInterrupt:
 		print("Interrupted")
 		setRGB(0,0,0)
